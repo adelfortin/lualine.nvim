@@ -1,7 +1,7 @@
 -- Copyright (c) 2024 Adel Fortin
 -- MIT license, see LICENSE for more details.
 -- stylua: ignore
-local colors = {
+local c = {
   blue1 = "#3B5998",
   blue2 = "#8B9DC3",
   blue3 = "#DFE3EE",
