@@ -44,11 +44,11 @@ function M.draw_section(section, section_name, is_focused)
       status[component_no] = section[component_no]:strip_separator()
       if section_name < 'c' then
         if
-          type(section[first_component_no].options.separator) ~= 'table'
-          and (section[1].options.section_separators.left ~= nil and section[1].options.section_separators.left ~= '')
+            type(section[first_component_no].options.separator) ~= 'table'
+            and (section[1].options.section_separators.left ~= nil and section[1].options.section_separators.left ~= '')
         then
           status[component_no] =
-            string.format('%s%%Z{%s}', status[component_no], section[1].options.section_separators.left)
+              string.format('%s%%Z{%s}', status[component_no], section[1].options.section_separators.left)
         end
       end
     end
@@ -59,18 +59,18 @@ function M.draw_section(section, section_name, is_focused)
     end
     -- Remove component separator when color option is used to color background
     if
-      (
-        type(section[component_no].options.color) == 'table'
-        and section[component_no].options.color.bg
-        and section[component_no].options.color.bg ~= section_color.bg
-      )
-      or type(section[component_no].options.color) == 'string'
-      or (
-        type(section[component_no].options.color) == 'function'
-        and section[component_no].color_fn_cache
-        and section[component_no].color_fn_cache.bg
-        and section[component_no].color_fn_cache.bg ~= section_color.bg
-      )
+        (
+          type(section[component_no].options.color) == 'table'
+          and section[component_no].options.color.bg
+          and section[component_no].options.color.bg ~= section_color.bg
+        )
+        or type(section[component_no].options.color) == 'string'
+        or (
+          type(section[component_no].options.color) == 'function'
+          and section[component_no].color_fn_cache
+          and section[component_no].color_fn_cache.bg
+          and section[component_no].color_fn_cache.bg ~= section_color.bg
+        )
     then
       strip_next_component = true
       status[component_no] = section[component_no]:strip_separator()
@@ -83,10 +83,10 @@ function M.draw_section(section, section_name, is_focused)
 
   local left_separator_string = ''
   if
-    section_name > 'x'
-    and section[first_component_no]
-    and type(section[first_component_no].options.separator) ~= 'table'
-    and (section[1].options.section_separators.right ~= nil and section[1].options.section_separators.right ~= '')
+      section_name > 'u'
+      and section[first_component_no]
+      and type(section[first_component_no].options.separator) ~= 'table'
+      and (section[1].options.section_separators.right ~= nil and section[1].options.section_separators.right ~= '')
   then
     left_separator_string = string.format(
       '%%z{%s}',

@@ -26,12 +26,18 @@ local config = {
     },
   },
   sections = {
-    lualine_a = { 'mode' },
-    lualine_b = { 'branch', 'diff', 'diagnostics' },
-    lualine_c = { 'filename' },
-    lualine_x = { 'encoding', 'fileformat', 'filetype' },
-    lualine_y = { 'progress' },
-    lualine_z = { 'location' },
+    lualine_a = { "mode" },
+    lualine_b = { "diagnostics" },
+    lualine_c = { "diff" },
+    lualine_d = { "branch" },
+    lualine_e = { "filename" },
+    lualine_f = { "" },
+    lualine_u = { "encoding" },
+    lualine_v = { "fileformat" },
+    lualine_w = { "filetype" },
+    lualine_x = { "filesize" },
+    lualine_y = { "progress", "selectioncount", "searchcount" },
+    lualine_z = { "location" },
   },
   inactive_sections = {
     lualine_a = {},
@@ -97,7 +103,7 @@ local function apply_configuration(config_table)
     for section_name, section in pairs(config_table[section_group_name]) do
       if section_name == 'refresh' then
         config[section_group_name][section_name] =
-          vim.tbl_deep_extend('force', config[section_group_name][section_name], utils.deepcopy(section))
+            vim.tbl_deep_extend('force', config[section_group_name][section_name], utils.deepcopy(section))
       else
         config[section_group_name][section_name] = utils.deepcopy(section)
       end

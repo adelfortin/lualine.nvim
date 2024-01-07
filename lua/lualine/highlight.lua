@@ -8,7 +8,7 @@ local modules = lualine_require.lazy_require {
   color_utils = 'lualine.utils.color_utils',
 }
 
-local section_highlight_map = { x = 'c', y = 'b', z = 'a' }
+local section_highlight_map = { u = 'f', v = 'e', w = 'd', x = 'c', y = 'b', z = 'a' }
 local active_theme = nil
 local theme_hls = {}
 local create_cterm_colors = false
@@ -117,10 +117,10 @@ function M.highlight(name, foreground, background, gui, link)
     background = sanitize_color(background)
     gui = (gui ~= nil and gui ~= '') and gui or 'None'
     if
-      loaded_highlights[name]
-      and loaded_highlights[name].fg == foreground
-      and loaded_highlights[name].bg == background
-      and loaded_highlights[name].gui == gui
+        loaded_highlights[name]
+        and loaded_highlights[name].fg == foreground
+        and loaded_highlights[name].bg == background
+        and loaded_highlights[name].gui == gui
     then
       return -- color is already defined why are we doing this anyway ?
     end
@@ -243,9 +243,9 @@ local function get_default_component_color(hl_name, mode, section, color, option
   local default_theme_color
   if active_theme[mode] and active_theme[mode][section] then
     default_theme_color = active_theme[mode][section]
-  elseif section >= 'c' and active_theme[mode] and active_theme[mode][section_highlight_map[section]] then
+  elseif section >= 'f' and active_theme[mode] and active_theme[mode][section_highlight_map[section]] then
     default_theme_color = active_theme[mode][section_highlight_map[section]]
-  elseif section >= 'c' and active_theme.normal[section_highlight_map[section]] then
+  elseif section >= 'f' and active_theme.normal[section_highlight_map[section]] then
     default_theme_color = active_theme.normal[section_highlight_map[section]]
   else
     default_theme_color = active_theme.normal[section]
@@ -283,10 +283,10 @@ local function get_default_component_color(hl_name, mode, section, color, option
   end
 
   if
-    options.color
-    and options.color_highlight
-    and options.color_highlight.name
-    and options.color_highlight.name .. '_' .. mode ~= hl_name
+      options.color
+      and options.color_highlight
+      and options.color_highlight.name
+      and options.color_highlight.name .. '_' .. mode ~= hl_name
   then
     apply_default(options.color, options.color_highlight.name .. '_' .. mode)
   end
@@ -404,7 +404,7 @@ function M.component_format_highlight(highlight, is_focused)
       if not highlight.no_default and not (color.fg and color.bg) then
         hl_name = append_mode(highlight.name, is_focused)
         color =
-          get_default_component_color(hl_name, M.get_mode_suffix():sub(2), highlight.section, color, highlight.options)
+            get_default_component_color(hl_name, M.get_mode_suffix():sub(2), highlight.section, color, highlight.options)
       end
       M.highlight(hl_name, color.fg, color.bg, color.gui, color.link)
       return '%#' .. hl_name .. '#', color
@@ -424,11 +424,11 @@ function M.format_highlight(section, is_focused)
 
   if theme_hls[mode] and theme_hls[mode][section] then
     ret = M.component_format_highlight(theme_hls[mode][section], is_focused)
-  elseif theme_hls[mode] and section > 'c' and theme_hls[mode][section_highlight_map[section]] then
+  elseif theme_hls[mode] and section > 'f' and theme_hls[mode][section_highlight_map[section]] then
     ret = M.component_format_highlight(theme_hls[mode][section_highlight_map[section]], is_focused)
   elseif theme_hls['normal'] and theme_hls['normal'][section] then
     ret = M.component_format_highlight(theme_hls['normal'][section], is_focused)
-  elseif theme_hls['normal'] and section > 'c' and theme_hls['normal'][section_highlight_map[section]] then
+  elseif theme_hls['normal'] and section > 'f' and theme_hls['normal'][section_highlight_map[section]] then
     ret = M.component_format_highlight(theme_hls['normal'][section_highlight_map[section]], is_focused)
   end
 

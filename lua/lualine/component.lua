@@ -47,7 +47,7 @@ end
 function M:set_separator()
   if self.options.separator == nil then
     if self.options.component_separators then
-      if self.options.self.section < 'x' then
+      if self.options.self.section < 'u' then
         self.options.separator = self.options.component_separators.left
       else
         self.options.separator = self.options.component_separators.right
@@ -139,9 +139,9 @@ function M:apply_icon()
       icon = icon[1]
     end
     if
-      self.options.icon_color_highlight
-      and type(self.options.icon) == 'table'
-      and self.options.icon.align == 'right'
+        self.options.icon_color_highlight
+        and type(self.options.icon) == 'table'
+        and self.options.icon.align == 'right'
     then
       self.status = table.concat {
         self.status,
@@ -172,7 +172,7 @@ function M:apply_separator()
   local separator = self.options.separator
   if type(separator) == 'table' then
     if self.options.separator[2] == '' then
-      if self.options.self.section < 'x' then
+      if self.options.self.section < 'u' then
         separator = self.options.component_separators.left
       else
         separator = self.options.component_separators.right
@@ -256,6 +256,7 @@ end
 -- luacheck: push no unused args
 ---actual function that updates a component. Must be overwritten with component functionality
 function M:update_status(is_focused) end
+
 -- luacheck: pop
 
 ---driver code of the class
