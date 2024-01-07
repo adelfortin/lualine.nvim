@@ -27,7 +27,7 @@ local refresh_real_curwin
 
 -- The events on which lualine redraws itself
 local default_refresh_events =
-  'WinEnter,BufEnter,SessionLoadPost,FileChangedShellPost,VimResized,Filetype,CursorMoved,CursorMovedI,ModeChanged'
+'WinEnter,BufEnter,SessionLoadPost,FileChangedShellPost,VimResized,Filetype,CursorMoved,CursorMovedI,ModeChanged'
 -- Helper for apply_transitional_separators()
 --- finds first applied highlight group after str_checked in status
 ---@param status string : unprocessed statusline string
@@ -72,7 +72,7 @@ local function fill_section_separator(status, is_focused, str_checked, last_hl, 
   end
   local transitional_highlight = reverse -- lua ternary assignment x ? y : z
       and modules.highlight.get_transitional_highlights(last_hl, next_hl)
-    or modules.highlight.get_transitional_highlights(next_hl, last_hl)
+      or modules.highlight.get_transitional_highlights(next_hl, last_hl)
   if transitional_highlight then
     return transitional_highlight .. sep
   end
@@ -83,12 +83,12 @@ end
 ---@param status string : unprocessed statusline string
 ---@return string : processed statusline string
 local function apply_transitional_separators(status, is_focused)
-  local status_applied = {} -- Collects all the pieces for concatenation
-  local last_hl -- Stores last highlight group that we found
+  local status_applied = {}     -- Collects all the pieces for concatenation
+  local last_hl                 -- Stores last highlight group that we found
   local last_hl_reseted = false -- Whether last_hl is nil after reset
   -- it after %=
-  local copied_pos = 1 -- Tracks how much we've copied over to status_applied
-  local str_checked = 1 -- Tracks where the searcher head is at
+  local copied_pos = 1          -- Tracks how much we've copied over to status_applied
+  local str_checked = 1         -- Tracks where the searcher head is at
 
   -- Process entire status replace the %z{sep} & %Z{sep} placeholders
   -- with proper transitional separator.
@@ -159,7 +159,7 @@ end
 ---@return string statusline string
 local statusline = modules.utils.retry_call_wrap(function(sections, is_focused, is_winbar)
   -- The sequence sections should maintain [SECTION_SEQUENCE]
-  local section_sequence = { 'a', 'b', 'c', 'x', 'y', 'z' }
+  local section_sequence = { 'a', 'b', 'c', 'd', 'e', 'f', 'u', 'v', 'w', 'x', 'y', 'z' }
   local status = {}
   local applied_midsection_divider = false
   local applied_trunc = false
@@ -167,7 +167,7 @@ local statusline = modules.utils.retry_call_wrap(function(sections, is_focused, 
     if sections['lualine_' .. section_name] then
       -- insert highlight+components of this section to status_builder
       local section_data =
-        modules.utils_section.draw_section(sections['lualine_' .. section_name], section_name, is_focused)
+          modules.utils_section.draw_section(sections['lualine_' .. section_name], section_name, is_focused)
       if #section_data > 0 then
         if not applied_midsection_divider and section_name > 'c' then
           applied_midsection_divider = true
@@ -220,7 +220,7 @@ local function notify_theme_error(theme_name)
 ### options.theme
 Theme `%s` not found, falling back to `auto`. Check if spelling is right.
 ]]
-    or [[
+      or [[
 ### options.theme
 Theme `%s` failed, falling back to `gruvbox`.
 This shouldn't happen.
@@ -280,13 +280,13 @@ local function status_dispatch(sec_name)
     local retval
     local current_ft = refresh_real_curwin
         and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(refresh_real_curwin), 'filetype')
-      or vim.bo.filetype
+        or vim.bo.filetype
     local is_focused = focused ~= nil and focused or modules.utils.is_focused()
     if
-      vim.tbl_contains(
-        config.options.disabled_filetypes[(sec_name == 'sections' and 'statusline' or sec_name)],
-        current_ft
-      )
+        vim.tbl_contains(
+          config.options.disabled_filetypes[(sec_name == 'sections' and 'statusline' or sec_name)],
+          current_ft
+        )
     then
       -- disable on specific filetypes
       return nil
@@ -338,15 +338,15 @@ local function refresh(opts)
   --   https://github.com/neovim/neovim/issues/19472
   --   https://github.com/nvim-lualine/lualine.nvim/issues/791
   if
-    opts.trigger == 'autocmd'
-    and vim.v.event.new_mode ~= 'c'
-    -- scheduling in op-pending mode seems to call the callback forever.
-    -- so this is restricted in op-pending mode.
-    -- https://github.com/neovim/neovim/issues/22263
-    -- https://github.com/nvim-lualine/lualine.nvim/issues/967
-    -- note this breaks mode component while switching to op-pending mode
-    and not vim.tbl_contains({ 'no', 'nov', 'noV' }, vim.v.event.new_mode)
-    and not vim.tbl_contains({ 'no', 'nov', 'noV' }, vim.v.event.old_mode)
+      opts.trigger == 'autocmd'
+      and vim.v.event.new_mode ~= 'c'
+      -- scheduling in op-pending mode seems to call the callback forever.
+      -- so this is restricted in op-pending mode.
+      -- https://github.com/neovim/neovim/issues/22263
+      -- https://github.com/nvim-lualine/lualine.nvim/issues/967
+      -- note this breaks mode component while switching to op-pending mode
+      and not vim.tbl_contains({ 'no', 'nov', 'noV' }, vim.v.event.new_mode)
+      and not vim.tbl_contains({ 'no', 'nov', 'noV' }, vim.v.event.old_mode)
   then
     opts.trigger = 'autocmd_redired'
     vim.schedule(function()
@@ -363,10 +363,10 @@ local function refresh(opts)
   local curtab = vim.api.nvim_get_current_tabpage()
   if last_focus[curtab] == nil or not vim.api.nvim_win_is_valid(last_focus[curtab]) then
     if
-      not vim.tbl_contains(
-        config.options.ignore_focus,
-        vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(curwin), 'filetype')
-      )
+        not vim.tbl_contains(
+          config.options.ignore_focus,
+          vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(curwin), 'filetype')
+        )
     then
       last_focus[curtab] = curwin
     else
@@ -377,10 +377,10 @@ local function refresh(opts)
         local focusable_win = curwin
         for _, win in ipairs(tab_wins) do
           if
-            not vim.tbl_contains(
-              config.options.ignore_focus,
-              vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(win), 'filetype')
-            )
+              not vim.tbl_contains(
+                config.options.ignore_focus,
+                vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(win), 'filetype')
+              )
           then
             focusable_win = win
             break
@@ -391,10 +391,10 @@ local function refresh(opts)
     end
   else
     if
-      not vim.tbl_contains(
-        config.options.ignore_focus,
-        vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(curwin), 'filetype')
-      )
+        not vim.tbl_contains(
+          config.options.ignore_focus,
+          vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(curwin), 'filetype')
+        )
     then
       last_focus[curtab] = curwin
     end
@@ -425,7 +425,7 @@ local function refresh(opts)
       local set_win = config.options.globalstatus
           and vim.fn.win_gettype(refresh_real_curwin) == 'popup'
           and refresh_real_curwin
-        or win
+          or win
       local stl_cur = vim.api.nvim_win_call(refresh_real_curwin, M.statusline)
       local stl_last = modules.nvim_opts.get_cache('statusline', { window = set_win })
       if stl_cur or stl_last then
