@@ -85,7 +85,7 @@ return {
   normal = {
     a = { fg = colors.blue6, bg = colors.blue1, gui = "bold" },
     b = { fg = colors.blue6, bg = colors.blue2 },
-    c = { fg = colors.blue6, bg = colors.blue3 },
+    c = { fg = colors.blue6, bg = colors.blue3, gui = "bold" },
     d = { fg = colors.blue6, bg = colors.blue4 },
     e = { fg = colors.blue2, bg = colors.blue5 },
     f = { fg = colors.blue1, bg = colors.blue6 },
@@ -99,7 +99,7 @@ return {
   command = {
     a = { fg = colors.purple6, bg = colors.purple1, gui = "bold" },
     b = { fg = colors.purple6, bg = colors.purple2 },
-    c = { fg = colors.purple6, bg = colors.purple3 },
+    c = { fg = colors.purple6, bg = colors.purple3, gui = "bold" },
     d = { fg = colors.purple6, bg = colors.purple4 },
     e = { fg = colors.purple2, bg = colors.purple5 },
     f = { fg = colors.purple1, bg = colors.purple6 },
@@ -113,7 +113,7 @@ return {
   inactive = {
     a = { fg = colors.gray6, bg = colors.gray1, gui = "bold" },
     b = { fg = colors.gray6, bg = colors.gray2 },
-    c = { fg = colors.gray6, bg = colors.gray3 },
+    c = { fg = colors.gray6, bg = colors.gray3, gui = "bold" },
     d = { fg = colors.gray6, bg = colors.gray4 },
     e = { fg = colors.gray2, bg = colors.gray5 },
     f = { fg = colors.gray1, bg = colors.gray6 },
@@ -127,7 +127,7 @@ return {
   insert = {
     a = { fg = colors.green6, bg = colors.green1, gui = "bold" },
     b = { fg = colors.green6, bg = colors.green2 },
-    c = { fg = colors.green6, bg = colors.green3 },
+    c = { fg = colors.green6, bg = colors.green3, gui = "bold" },
     d = { fg = colors.green6, bg = colors.green4 },
     e = { fg = colors.green2, bg = colors.green5 },
     f = { fg = colors.green1, bg = colors.green6 },
@@ -141,7 +141,7 @@ return {
   replace = {
     a = { fg = colors.red6, bg = colors.red1, gui = "bold" },
     b = { fg = colors.red6, bg = colors.red2 },
-    c = { fg = colors.red6, bg = colors.red3 },
+    c = { fg = colors.red6, bg = colors.red3, gui = "bold" },
     d = { fg = colors.red6, bg = colors.red4 },
     e = { fg = colors.red2, bg = colors.red5 },
     f = { fg = colors.red1, bg = colors.red6 },
@@ -155,7 +155,7 @@ return {
   terminal = {
     a = { fg = colors.orange6, bg = colors.orange1, gui = "bold" },
     b = { fg = colors.orange6, bg = colors.orange2 },
-    c = { fg = colors.orange6, bg = colors.orange3 },
+    c = { fg = colors.orange6, bg = colors.orange3, gui = "bold" },
     d = { fg = colors.orange6, bg = colors.orange4 },
     e = { fg = colors.orange2, bg = colors.orange5 },
     f = { fg = colors.orange1, bg = colors.orange6 },
@@ -169,7 +169,7 @@ return {
   visual = {
     a = { fg = colors.yellow6, bg = colors.yellow1, gui = "bold" },
     b = { fg = colors.yellow6, bg = colors.yellow2 },
-    c = { fg = colors.yellow6, bg = colors.yellow3 },
+    c = { fg = colors.yellow6, bg = colors.yellow3, gui = "bold" },
     d = { fg = colors.yellow6, bg = colors.yellow4 },
     e = { fg = colors.yellow2, bg = colors.yellow5 },
     f = { fg = colors.yellow1, bg = colors.yellow6 },
